@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { ColorI } from '@/config/colorConfig';
+import Link from 'next/link';
 
 const NavBar = () => {
   const [activeIndex, setActiveIndex] = useState(0); 
@@ -11,22 +12,22 @@ const NavBar = () => {
   const navItems = [
     {
       title: "Overview",
-      url: "",
+      url: "admin/",
       active: true
     },
     {
       title: "Notifications",
-      url: "notifications",
+      url: "admin/notifications",
       active: false
     },
     {
       title: "Reports",
-      url: "reports",
+      url: "admin/reports",
       active: false
     },
     {
       title: "Actions",
-      url: "actions",
+      url: "admin/actions",
       active: false
     }
   ];
@@ -36,6 +37,7 @@ const NavBar = () => {
       {navItems.map((item, index) => (
         <NavBarItem
           key={index}
+          url={item.url}
           title={item.title}
           active={activeIndex === index && hoverIndex === null} 
           isHovered={hoverIndex === index} 
@@ -52,6 +54,7 @@ export default NavBar;
 
 type NavBarItemProps = {
   title: string;
+  url: string;
   active: boolean;
   isHovered: boolean;
   onHover: () => void;
@@ -59,8 +62,9 @@ type NavBarItemProps = {
   onClick: () => void;
 };
 
-const NavBarItem: React.FC<NavBarItemProps> = ({ title, active, isHovered, onHover, onLeave, onClick }) => {
+const NavBarItem: React.FC<NavBarItemProps> = ({ title, url, active, isHovered, onHover, onLeave, onClick }) => {
   return (
+    <Link href={url}>
     <div
       className="min-h-[73px] flex flex-col items-center cursor-pointer"
       onMouseEnter={onHover}
@@ -85,5 +89,6 @@ const NavBarItem: React.FC<NavBarItemProps> = ({ title, active, isHovered, onHov
         style={{ backgroundColor: ColorI.colors.secondary.DEFAULT }}
       />
     </div>
+    </Link>
   );
 };

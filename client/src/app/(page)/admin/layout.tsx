@@ -8,7 +8,7 @@ const layout = ({
   children: React.ReactNode;
 }>) => {
   return (
-     <main className="flex min-h-screen flex-col items-center justify-between px-[4.5px] pt-[4.5px]">
+     <main className="flex min-h-screen flex-col items-center justify-between px-[px] pt-[px]">
       {/* TOP BAR */}
       <TopNavBar />
       <div className=" w-full flex flex-1 relative">

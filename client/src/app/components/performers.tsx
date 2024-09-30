@@ -30,13 +30,13 @@ const chartConfig = {
 const Performers = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [performersList, setperformersList] = useState<PerformersListI[] | null>([
-        {
-            id: '1',
-            rank: 1,
-            name: 'Hansana ',
-            profile: './user.png',
-            marks: '1,000',
-        },
+        // {
+        //     id: '1',
+        //     rank: 1,
+        //     name: 'Hansana ',
+        //     profile: './user.png',
+        //     marks: '1,000',
+        // },
         {
             id: '1',
             rank: 2,
@@ -83,7 +83,7 @@ const Performers = () => {
     )
 
     return (
-        <Card className='w-full ' >
+        <Card className='w-full h-full' >
             <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row ">
                 <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
                     <CardTitle> Performers Insights:</CardTitle>

@@ -1,11 +1,13 @@
 import { AttendanceChart } from '@/app/components/barChart'
+import { ComboBox } from '@/app/components/combobox'
 import { GradesChart } from '@/app/components/gradesChart'
 import Performers from '@/app/components/performers'
 import { QuestionLevelChart } from '@/app/components/QuestionLevelChart'
 import { QuestionTypeChart } from '@/app/components/questionType'
 import SummaryCard from '@/app/components/summaryCard'
 import { Avatar, AvatarFallback, AvatarImage } from '@/app/components/ui/avatar'
-import { CalendarDays, GraduationCap, NotebookText, Users } from 'lucide-react'
+import { Button } from '@/app/components/ui/button'
+import { CalendarDays, Filter, GraduationCap, NotebookText, PencilRuler, Users } from 'lucide-react'
 import React, { ReactElement } from 'react'
 
 export interface SummaryCardDataI {
@@ -50,12 +52,20 @@ const AdminPage = () => {
       description: 'Total Quize',
       value: '1,010',
       bg: 'bg-white'
-    }
+    },
+    {
+      id: 4,
+      icon: <PencilRuler className="h-6 w-6" />,
+      title: 'Total Units',
+      description: 'Total Units',
+      value: '10',
+      bg: 'bg-white'
+    },
   ]
   return (
     <div className='flex w-full h-fit flex-col px-10 pb-10 b'>
       {/* USER DETAILS PROFILE */}
-      <div className='w-full h-fit py-5'>
+      <div className='w-full h-fit py-5 flex justify-between'>
         <div className='flex items-center gap-4 cursor-pointer'>
           <Avatar className='h-14 w-14'>
             <AvatarImage src="./user.png" alt="@shadcn" />
@@ -71,8 +81,9 @@ const AdminPage = () => {
           </div>
         </div>
 
-        <div>
-          
+        <div className='w-fit flex gap-4  items-center'>
+             <ComboBox  />
+            <Button variant="secondary" size="default" className='text-white' > <Filter className="h-3 w-3 mr-2"/>  Filter </Button>
         </div>
       </div>
 
@@ -83,11 +94,11 @@ const AdminPage = () => {
       </div>
 
       {/* 3RD ROW */}
-      <div className='w-full flex flex-row justify-between items-start gap-7 my-7 '>
-        <div className='w-3/5 flex'>
+      <div className='w-full flex flex-row justify-between  gap-7 my-6 '>
+        <div className='w-2/5 flex'>
           <AttendanceChart />
         </div>
-        <div className='w-2/5 flex justify-start items-start'>
+        <div className='w-3/5 flex justify-start items-start  '>
           <Performers />
         </div>
       </div>
@@ -95,9 +106,9 @@ const AdminPage = () => {
       {/* 4RD ROW */}
       <div className='w-full flex flex-row justify-between items-start gap-7  '>
         <div className='w-full flex gap-7'>
-        <GradesChart/>
-        <QuestionTypeChart />
-        <QuestionLevelChart/>
+          <GradesChart />
+          <QuestionTypeChart />
+          <QuestionLevelChart />
         </div>
       </div>
     </div>

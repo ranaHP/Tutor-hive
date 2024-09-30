@@ -1,14 +1,27 @@
+import { AttendanceChart } from '@/app/components/barChart'
+import { GradesChart } from '@/app/components/gradesChart'
+import Performers from '@/app/components/performers'
+import { QuestionLevelChart } from '@/app/components/QuestionLevelChart'
+import { QuestionTypeChart } from '@/app/components/questionType'
+import SummaryCard from '@/app/components/summaryCard'
 import { Avatar, AvatarFallback, AvatarImage } from '@/app/components/ui/avatar'
-import { Button } from '@/app/components/ui/button'
-import classNames from 'classnames'
 import { CalendarDays, GraduationCap, NotebookText, Users } from 'lucide-react'
-import React from 'react'
+import React, { ReactElement } from 'react'
+
+export interface SummaryCardDataI {
+  id: number,
+  icon: ReactElement,
+  title: string,
+  description: string,
+  value: string,
+  bg: string
+}
 
 const AdminPage = () => {
-  const summaryCards = [
+  const summaryCards: SummaryCardDataI[] = [
     {
       id: 1,
-      icon: <GraduationCap className="h-5 w-5" />,
+      icon: <GraduationCap className="h-6 w-6" />,
       title: 'Total Students',
       description: 'Total Students',
       value: '2,000',
@@ -16,7 +29,7 @@ const AdminPage = () => {
     },
     {
       id: 2,
-      icon: <NotebookText className="h-5 w-5" />,
+      icon: <NotebookText className="h-6 w-6" />,
       title: 'Total Quize',
       description: 'Total Quize',
       value: '1,010',
@@ -24,15 +37,15 @@ const AdminPage = () => {
     },
     {
       id: 3,
-      icon: <CalendarDays className="h-5 w-5" />,
+      icon: <CalendarDays className="h-6 w-6" />,
       title: 'Up Comming Quizes',
       description: 'Total Students',
-      value: '19/10/2024',
+      value: '19-10-2024',
       bg: 'bg-white'
     },
     {
       id: 4,
-      icon: <Users className="h-5 w-5" />,
+      icon: <Users className="h-6 w-6" />,
       title: 'Total Instructors',
       description: 'Total Quize',
       value: '1,010',
@@ -40,7 +53,7 @@ const AdminPage = () => {
     }
   ]
   return (
-    <div className='flex w-full h-full flex-col px-10'>
+    <div className='flex w-full h-fit flex-col px-10 pb-10 b'>
       {/* USER DETAILS PROFILE */}
       <div className='w-full h-fit py-5'>
         <div className='flex items-center gap-4 cursor-pointer'>
@@ -57,40 +70,35 @@ const AdminPage = () => {
             </div>
           </div>
         </div>
+
+        <div>
+          
+        </div>
       </div>
 
       {/* 2ND ROW */}
       <div className='w-full flex flex-row justify-between items-center gap-7 mt-10'>
         {/* SUMMARY CARD */}
-        {summaryCards.map((card) => (
-          <div
-            className={classNames({
-              'w-full p-1 h-full flex items-center gap-2 rounded-md shadow-sm ': true,
-              'bg-secondary': card.bg == 'bg-secondary',
-              'bg-white': card.bg == 'bg-white',
-              'text-white': card.bg == 'bg-secondary',
-              'text-black': card.bg == 'bg-white',
-            })}
-            key={card.id}>
-
-            <div className='w-1/3  flex items-center justify-center'>
-              <Button variant={'summaryCardIcon'} size={'summaryCardIcon'} >
-                {card.icon}
-              </Button>
-            </div>
-            <div className='w-2/3 flex flex-col py-4'>
-            <div className='text-[1.15rem] font-semibold '>{card.value}</div>
-              <div className='text-[0.95rem] '>{card.title}</div>
-              <div className='text-[0.7rem] '>{card.description}</div>
-            </div>
-
-          </div>
-        ))}
+        {summaryCards.map((card) => <SummaryCard key={card.id} card={card} />)}
       </div>
 
       {/* 3RD ROW */}
-      <div className='w-full flex flex-row justify-between items-center gap-7 mt-10'>
+      <div className='w-full flex flex-row justify-between items-start gap-7 my-7 '>
+        <div className='w-3/5 flex'>
+          <AttendanceChart />
+        </div>
+        <div className='w-2/5 flex justify-start items-start'>
+          <Performers />
+        </div>
+      </div>
 
+      {/* 4RD ROW */}
+      <div className='w-full flex flex-row justify-between items-start gap-7  '>
+        <div className='w-full flex gap-7'>
+        <GradesChart/>
+        <QuestionTypeChart />
+        <QuestionLevelChart/>
+        </div>
       </div>
     </div>
   )
